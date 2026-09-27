@@ -1,0 +1,43 @@
+---
+layout: default
+---
+
+<div class="home">
+
+  {% if page.title %}
+    <h1 class="page-heading">{{ page.title }}</h1>
+  {% endif %}
+
+  {% assign categories_list = site.categories | sort %}
+
+  {% if categories_list.size == 0 %}
+    <p>まだ記事がありません。</p>
+  {% endif %}
+
+  {% for category in categories_list %}
+    {% assign genre_name = category[0] %}
+    {% assign genre_posts = category[1] %}
+    <section class="genre-section">
+      <h2 class="genre-heading">{{ genre_name }}</h2>
+      <div class="post-grid">
+        {% for post in genre_posts %}
+          <a class="post-card" href="{{ post.url | relative_url }}">
+            {% if post.image %}
+              <div class="post-card-image" style="background-image: url('{{ post.image }}');"></div>
+            {% else %}
+              <div class="post-card-image post-card-image--placeholder">🛍️</div>
+            {% endif %}
+            <div class="post-card-body">
+              <h3 class="post-card-title">{{ post.title }}</h3>
+              <p class="post-card-date">{{ post.date | date: "%Y年%m月%d日" }}</p>
+              {% if post.excerpt %}
+                <p class="post-card-excerpt">{{ post.excerpt | strip_html | truncate: 60 }}</p>
+              {% endif %}
+            </div>
+          </a>
+        {% endfor %}
+      </div>
+    </section>
+  {% endfor %}
+
+</div>
