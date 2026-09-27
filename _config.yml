@@ -1,0 +1,6 @@
+title: お得情報まとめ
+description: 楽天市場で見つけた気になるアイテムをゆるく紹介するブログです。
+theme: minima
+plugins:
+  - jekyll-feed
+show_excerpts: true
